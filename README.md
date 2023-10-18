@@ -48,13 +48,13 @@ From the templated repository:
 1. Run the following command to update files to use the name of your provider (third-party: use your GitHub organization/username):
 
     ```bash
-    make prepare NAME=foo REPOSITORY=github.com/pulumi/pulumi-foo
+    make prepare NAME=cloudngfwaws REPOSITORY=github.com/MitchellGerdisch/pulumi-cloudngfwaws
     ```
 
    This will do the following:
    - rename folders in `provider/cmd` to `pulumi-resource-foo` and `pulumi-tfgen-foo`
    - replace dependencies in `provider/go.mod` to reflect your repository name
-   - find and replace all instances of the boilerplate `xyz` with the `NAME` of your provider.
+   - find and replace all instances of the boilerplate `cloudngfwaws` with the `NAME` of your provider.
 
    Note for third-party providers:
    - Make sure to set the correct GitHub organization/username in all files referencing your provider as a dependency:
@@ -86,7 +86,7 @@ Pulumi provider repositories have the following general structure:
 1. In `provider/go.mod`, add a reference to the upstream Terraform provider in the `require` section, e.g.
 
     ```go
-    github.com/foo/terraform-provider-foo v0.4.0
+    github.com/paloaltonetworks/terraform-provider-cloudngfwaws v2.0.4
     ```
 
 1. In `provider/resources.go`, ensure the reference in the `import` section uses the correct Go module path, e.g.:
@@ -359,7 +359,7 @@ before:
   hooks:
   - make tfgen
 builds:
-- binary: pulumi-resource-xyz
+- binary: pulumi-resource-cloudngfwaws
   dir: provider
   goarch:
   - amd64
@@ -370,8 +370,8 @@ builds:
   - linux
   ignore: []
   ldflags:
-  - -X github.com/pulumi/pulumi-xyz/provider/pkg/version.Version={{.Tag}}
-  main: ./cmd/pulumi-resource-xyz/
+  - -X github.com/MitchellGerdisch/pulumi-cloudngfwaws/provider/pkg/version.Version={{.Tag}}
+  main: ./cmd/pulumi-resource-cloudngfwaws/
   sort: asc
   use: git
 release:
@@ -396,18 +396,18 @@ dist
 ├── artifacts.json
 ├── config.yaml
 ├── metadata.json
-├── pulumi-xyz_darwin_amd64_v1
-│   └── pulumi-resource-xyz
-├── pulumi-xyz_darwin_arm64
-│   └── pulumi-resource-xyz
-├── pulumi-xyz_linux_amd64_v1
-│   └── pulumi-resource-xyz
-├── pulumi-xyz_linux_arm64
-│   └── pulumi-resource-xyz
-├── pulumi-xyz_windows_amd64_v1
-│   └── pulumi-resource-xyz.exe
-└── pulumi-xyz_windows_arm64
-    └── pulumi-resource-xyz.exe
+├── pulumi-cloudngfwaws_darwin_amd64_v1
+│   └── pulumi-resource-cloudngfwaws
+├── pulumi-cloudngfwaws_darwin_arm64
+│   └── pulumi-resource-cloudngfwaws
+├── pulumi-cloudngfwaws_linux_amd64_v1
+│   └── pulumi-resource-cloudngfwaws
+├── pulumi-cloudngfwaws_linux_arm64
+│   └── pulumi-resource-cloudngfwaws
+├── pulumi-cloudngfwaws_windows_amd64_v1
+│   └── pulumi-resource-cloudngfwaws.exe
+└── pulumi-cloudngfwaws_windows_arm64
+    └── pulumi-resource-cloudngfwaws.exe
 ```
 
 Any of the provider binaries can be used to target the correct machine architecture
